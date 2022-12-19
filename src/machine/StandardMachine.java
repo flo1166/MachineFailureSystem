@@ -24,9 +24,8 @@ public class StandardMachine extends Machine {
 	/**
 	 * Random generator for standard machines
 	 */
-	public double[] RandomGenerator(int T) {
+	public double[] RandomGenerator(long seed, int T) {
 		
-		long seed = 1234554321;
 		Random randomObj = new Random(seed);
 		double[] randomSeq = new double[T];
 		

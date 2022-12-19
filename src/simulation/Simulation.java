@@ -1,7 +1,5 @@
 package simulation;
 
-import java.util.Random;
-
 import machine.Machine;
 import machine.StandardMachine;
 
@@ -30,24 +28,9 @@ public class Simulation {
 		
 		// count of replications for simulation
 		int T = 10000;
-		
-		simulation(T, machines);   
-	}
-	
-	/**
-	 * This method initializes random series of numbers and returns an array filled with them
-	 * @return a sequence with random probabilities bounded between 0 and 1
-	 */
-	public static double[] randomDouble(int T) {
 		long seed = 1234554321;
-		Random randomObj = new Random(seed);
-		double[] randomSeq = new double[T];
 		
-		for (int i = 0; i < T; i++) {
-			randomSeq[i] = randomObj.nextDouble(1) + 0.01;
-		}
-		
-		return randomSeq;
+		simulation(seed, T, machines);   
 	}
 	
 	/**
@@ -55,7 +38,7 @@ public class Simulation {
 	 * @param T repetition of simulation
 	 * @param machines set of machines to solve the problem
 	 */
-	public static void simulation(int T, Machine[] machines) {
+	public static void simulation(long seed, int T, Machine[] machines) {
 		
 		// initialize counters
 		double countAllUp = 0;
@@ -63,8 +46,8 @@ public class Simulation {
 		double countUpA = 0;
 		double countUpB = 0;
 		double countUpC = 0;
-		
-		double[] ranDouble = randomDouble(T * machines.length);
+
+		double[] ranDouble = machines[0].RandomGenerator(seed, T * machines.length);
 		
 		// solve problem
 		for (int i = 0; i < T; i ++) {

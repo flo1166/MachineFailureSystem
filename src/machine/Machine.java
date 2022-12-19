@@ -125,5 +125,5 @@ public abstract class Machine {
 	 * @param T the count of repetition for the simulation
 	 * @return a sequence with random variables
 	 */
-	public abstract double[] RandomGenerator(int T);
+	public abstract double[] RandomGenerator(long seed, int T);
 }

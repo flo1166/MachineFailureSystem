@@ -26,24 +26,23 @@ public class PriorityMachine extends Machine {
 	/**
 	 * Random generator for priority machines
 	 */
-	public double[] RandomGenerator(int T) {
+	public double[] RandomGenerator(long seed, int T) {
 		
 		// initialize random
-		long seed = 1234554321;
 		Random randomObj = new Random(seed);
 		
 		// initialize variables
 		double[] randomSeq = new double[T];
 		double a = 0;
-		double b = 0.2;
-		double c = 1;
+		double c = 0.2;
+		double b = 1;
 		
 		// Triangular distribution
 		TriangularDistribution triangular = new TriangularDistribution(a, c, b);
 	    
 	    // calculate
 		for (int i = 0; i < T; i++) {
-			randomSeq[i] = triangular.density(randomObj.nextDouble(1));
+			randomSeq[i] = triangular.cumulativeProbability(randomObj.nextDouble());
 		}
 		
 		// return
